@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script th:src="@{semantic/assets/library/jquery.min.js}"></script>
+	<script type="application/javascript">
+		$(document)
+			.ready(function() {
+				$('#xxx').click(function () {
+					alert($(this).data('loc'))
+				});
+			});
+	</script>
+</head>
+<body>
+	<button  data-loc="123465" id="xxx" >hi</button>
+</body>
+</html>

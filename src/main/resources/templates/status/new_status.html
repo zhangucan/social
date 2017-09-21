@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Standard Meta -->
+	<meta charset="utf-8" />
+	<title>Title</title>
+	
+	<link rel="stylesheet" th:href="@{layui/css/layui.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{semantic/dist/semantic.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{mycomments/css/home.css}">
+	
+	<script th:src="@{layui/layui.js}"></script>
+	<script th:src="@{semantic/assets/library/jquery.min.js}"></script>
+	<script th:src="@{semantic/dist/semantic.min.js}"></script>
+	<script th:src="'https://cdn.bootcss.com/jquery.form/4.2.2/jquery.form.min.js'"></script>
+</head>
+<!--<script th:inline="javascript">
+	layui.use(['layer'], function () {
+		var $ = layui.$;
+		var user_id = [[${user.id}]];
+		var ajaxFormOption = {
+			type: "post", //提交方式
+			dataType: "json", //数据类型
+			url: "/rest_new_status_"+ user_id, //请求url
+			success: function (data) { //提交成功的回调函数
+				var status_id = data.id;
+				/*var new_travel = layer.open({
+					id:'new_travel',
+					shade: 0,
+					scrollbar: false,
+					title:false,
+					type: 2,
+					content:'/new_travel_' + status_id,
+					area: ['100%', '100%'],
+					anim:6
+				});
+				layer.full(new_travel);*/
+				$.ajax({
+					type : "get",
+					async : false,  //同步请求
+					url : "/new_travel_" + status_id,
+					timeout:1000,
+					success:function(dates){
+						alert(dates)
+						$("body").html(dates);//要刷新的div
+					},
+					error: function() {
+						// alert("失败，请稍后再试！");
+					}
+				});
+			}
+		};
+		$("form").ajaxForm(ajaxFormOption);
+	});
+</script>-->
+
+<body style="background-image: url(semantic/images/beijing.jpg)">
+		<div class="ui container" >
+			<div class="ui three top attached steps" style="margin-top: 50px">
+				<a class="step">
+					<i class="truck icon"></i>
+					<div class="content">
+						<div class="title">运输</div>
+						<div class="description">选择您的运输方式</div>
+					</div>
+				</a>
+				<a class="active step">
+					<i class="payment icon"></i>
+					<div class="content">
+						<div class="title">账单</div>
+						<div class="description">输入帐单信息</div>
+					</div>
+				</a>
+				<a class="disabled step">
+					<i class="info icon"></i>
+					<div class="content">
+						<div class="title">确认订单</div>
+						<div class="description">确认订单详细信息</div>
+					</div>
+				</a>
+			</div>
+			<div class="ui two column  grid">
+				<div class="eleven wide column">
+					<div class="ui blue segment">
+						<form class="ui form" th:object="${status}" th:action="@{'/new_status_'+${user_id}}" method="post">
+							<h2 class="header center" >简单介绍下游记吧 .</h2>
+							<h4 class="ui horizontal divider header">
+								<i class="tag icon"></i>
+								内容
+							</h4>
+							<div class="field">
+								<label>游记名字</label>
+								<input type="text" name="first-name" th:field="${status.name}" placeholder="name">
+							</div>
+							<div class="field">
+								<label>游记简介</label>
+								<textarea th:field="${status.introduction}"></textarea>
+							</div>
+							<input class="ui button" type="submit"  >
+						</form>
+					</div>
+				</div>
+				<div class="five wide column" >
+					<div class="overlay">
+						<div class="ui link cards" id="contentor" >
+							<div class="ui card" style="width:236px"  >
+								<div class="image">
+									<img th:src="@{semantic/images/pic.jpg}">
+								</div>
+								<div class="content">
+									<div class="header">用户信息</div>
+									<div class="meta">
+										Create in Sep 2014
+									
+									</div>
+								</div>
+								<div class="extra  content">
+									<div class="ui middle aligned divided list">
+										<div class="item">
+											<div class="right floated content">
+												<div class="ui button">查看</div>
+											</div>
+											<div  class="middle aligned content">
+												<i class="users icon"></i>
+												我的主页
+											</div>
+										</div>
+										<div class="item">
+											<div class="right floated content">
+												<div class="ui button">查看</div>
+											</div>
+											<div  class="middle aligned content">
+												<i class="marker icon"></i>
+												我的收藏
+											</div>
+										</div>
+										<div class="item">
+											<div class="right floated content">
+												<div class="ui button">查看</div>
+											</div>
+											<i class="mail icon"></i>
+											<div  class="middle aligned content">
+												我的游记
+											</div>
+										</div>
+										<div class="item">
+											<div class="right floated content">
+												<div class="ui button">查看</div>
+											</div>
+											<i class="linkify icon"></i>
+											<div  class="middle aligned content">
+												浏览记录
+											</div>
+										</div>
+									</div>
+								</div>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+</body>
+</html>

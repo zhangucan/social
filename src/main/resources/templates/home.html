@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title th:text="${#calendars.format(today,'yyyy-MMMM-dd')}">Sticky Example - Semantic</title>
+    <link rel="stylesheet" th:href="@{layui/css/layui.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{semantic/dist/semantic.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{mycomments/css/home.css}">
+
+    <script th:src="@{layui/layui.js}"></script>
+    <script th:src="@{semantic/assets/library/jquery.min.js}"></script>
+    <script th:src="@{semantic/dist/semantic.min.js}"></script>
+	<script th:inline="javascript">
+		layui.use(['element','carousel','layer'], function(){
+			var carousel = layui.carousel;
+			var $ = layui.$;
+			//建造跑马灯实例
+			carousel.render({
+				elem: '#test1'
+				,width: '100%' //设置容器宽度
+				,arrow: 'hover' //始终显示箭头
+			});
+			
+			$('#newStatus').click(function () {
+				var user_id = [[${user.id}]];
+				var new_status = layer.open({
+					id:'new_status',
+					title:false,
+					maxmin:true,
+					shade: 0,
+					scrollbar: false,
+					type: 2,
+					content:'/new_status_' + user_id,
+					area: ['100%', '100%'],
+					anim:6
+				});
+				layer.full(new_status);
+			});
+			
+		});
+	</script>
+</head>
+<body >
+    <header th:replace="common/header::header"></header>
+  <!--页面主体-->
+  <div class="ui container" >
+      <div class="ui two column  grid">
+          <!--消息-->
+          <div class="eleven wide column"  >
+              <!--消息列表-->
+              <div class="ui one column grid">
+                  <!--子菜单-->
+                  <div class="column" >
+                      <div class="ui secondary  menu" style="background-color:#ffffff">
+
+                          <a class=" item"> <i class="help circle outline icon"></i>提问 </a>
+
+                          <a class="item"><i class="talk outline icon"></i>回答 </a>
+
+                          <a class="item" th:href="@{'/new_status_'+${user.id}}" ><i class="write icon"></i>写游记 </a>
+                          
+                          <div class="right menu">
+                              <div class="item">
+                                  <div class="ui icon input">
+                                      <input type="text" placeholder="Search...">
+                                      <i class="search link icon"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!--子菜单 over-->
+                  <div class="column" >
+                      <div class="ui divided items">
+                          <div class="item">
+                              <div class="image">
+                                  <img th:src="@{semantic/images/img.jpg}">
+                              </div>
+                              <div class="content">
+                                  <a class="header">12 Years a Slave</a>
+                                  <div class="meta">
+                                      <span class="cinema">Union Square 14</span>
+                                  </div>
+                                  <div class="description">
+                                      <div class="description">
+                                          Matthew is an interior designer living in New York.
+                                          Matthew is an interior designer living in New York.
+                                          Matthew is an interior designer living in New York.
+                                          Matthew is an interior designer living in New York.
+                                          Matthew is an interior designer living in New York.
+                                      </div>
+                                  </div>
+                                  <div class="extra">
+                                      <div class="ui label">IMAX</div>
+                                      <div class="ui label"><i class="globe icon"></i> Additional Languages</div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="item">
+                              <div class="image">
+                                  <img th:src="@{semantic/images/img.jpg}">
+                              </div>
+                              <div class="content">
+                                  <a class="header">My Neighbor Totoro</a>
+                                  <div class="meta">
+                                      <span class="cinema">IFC Cinema</span>
+                                  </div>
+                                  <div class="description">
+                                      <p></p>
+                                  </div>
+                                  <div class="extra">
+                                      <div class="ui right floated primary button">Buy tickets <i class="right chevron icon"></i> </div>
+                                      <div class="ui label">Limited</div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="item">
+                              <div class="image">
+                                  <img th:src="@{semantic/images/img.jpg}">
+                              </div>
+                              <div class="content">
+                                  <a class="header">Watchmen</a>
+                                  <div class="meta">
+                                      <span class="cinema">IFC</span>
+                                  </div>
+                                  <div class="description">
+                                      <p></p>
+                                  </div>
+                                  <div class="extra">
+                                      <div class="ui right floated primary button">Buy tickets <i class="right chevron icon"></i> </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                  </div>
+
+              </div>
+              <!--消息列表 over-->
+          </div>
+          <!--消息 over-->
+          <!--工具栏-->
+          <div class="five wide column" id="example1">
+              <div class="ui one column grid" >
+                  <div class="column">
+                      <div class="overlay">
+	                      <div class="ui link cards" id="contentor" >
+		                      <div class="ui card" style="width:236px"  >
+			                      <div class="image">
+				                      <img th:src="@{semantic/images/pic.jpg}">
+			                      </div>
+			                      <div class="content">
+				                      <div class="header">用户信息</div>
+				                      <div class="meta">
+					                      Create in Sep 2014
+					                      
+				                      </div>
+			                      </div>
+			                      <div class="extra  content">
+				                      <div class="ui middle aligned divided list">
+					                      <div class="item">
+						                      <div class="right floated content">
+							                      <div class="ui button">查看</div>
+						                      </div>
+						                      <div  class="middle aligned content">
+							                      <i class="users icon"></i>
+							                      我的主页
+						                      </div>
+					                      </div>
+					                      <div class="item">
+						                      <div class="right floated content">
+							                      <div class="ui button">查看</div>
+						                      </div>
+						                      <div  class="middle aligned content">
+							                      <i class="marker icon"></i>
+							                      我的收藏
+						                      </div>
+					                      </div>
+					                      <div class="item">
+						                      <div class="right floated content">
+							                      <div class="ui button">查看</div>
+						                      </div>
+						                      <i class="mail icon"></i>
+						                      <div  class="middle aligned content">
+							                      我的游记
+						                      </div>
+					                      </div>
+					                      <div class="item">
+						                      <div class="right floated content">
+							                      <div class="ui button">查看</div>
+						                      </div>
+						                      <i class="linkify icon"></i>
+						                      <div  class="middle aligned content">
+							                      浏览记录
+						                      </div>
+					                      </div>
+				                      </div>
+			                      </div>
+			                      
+		                      </div>
+	                      </div>
+                      </div>
+                      <script>
+
+                      </script>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div th:replace="common/footer::footer"></div>
+</body>
+
+</html>

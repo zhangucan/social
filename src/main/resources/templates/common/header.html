@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <script type="application/javascript">
+    </script>
+    <header>
+        <div class="layui-carousel" id="test1">
+            <div carousel-item>
+                <div>条目1</div>
+                <div>条目2</div>
+                <div>条目3</div>
+                <div>条目4</div>
+                <div>条目5</div>
+            </div>
+        </div>
+
+
+        <div class="ui borderless main menu">
+            <div class="ui text container">
+                <div href="#" class="header item">
+                    <img class="logo" th:src="@{semantic/assets/images/logo.png}">
+                    首页
+                </div>
+                <a href="#" class="item">发现</a>
+                <a href="#" class="item">话题</a>
+
+                <div class="right menu">
+                    <a href="#" class="ui item"   data-tooltip="通知" data-position="bottom center">
+                        <i class="alarm outline icon" ></i>
+                    </a>
+                    <a href="#" class="ui item" data-tooltip="私信" data-position="bottom center">
+                        <i class="comments outline icon"></i>
+                    </a>
+                    <a href="#" class="ui item">
+                    <img class="ui avatar image" th:src="@{semantic/assets/images/logo.png}">
+                    <span><a th:text="${user.name}"></a></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+</html>
